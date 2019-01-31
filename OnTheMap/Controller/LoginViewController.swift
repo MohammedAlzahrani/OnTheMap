@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var debugLable: UILabel!
-    
+    let sharedAPI = API.sharedAPI
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -28,6 +28,7 @@ class LoginViewController: UIViewController {
         if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty{
             debugLable.text = "email or password field is empty"
         } else{
+            sharedAPI.postSession(userName: "m4.w1991@gmail.com", password: "Mm-123456", completion: <#T##(String?) -> Void#>)
             print("login")
         }
     }
