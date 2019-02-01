@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD5888362204A937009FB946 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5888352204A937009FB946 /* GCDBlackBox.swift */; };
 		CD70D00B21F2136700424749 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70D00A21F2136700424749 /* AppDelegate.swift */; };
 		CD70D00D21F2136700424749 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70D00C21F2136700424749 /* LoginViewController.swift */; };
 		CD70D01021F2136700424749 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD70D00E21F2136700424749 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD5888352204A937009FB946 /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		CD70D00721F2136700424749 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD70D00A21F2136700424749 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD70D00C21F2136700424749 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				CD70D01121F2136700424749 /* Assets.xcassets */,
 				CD70D01321F2136700424749 /* LaunchScreen.storyboard */,
 				CD70D01621F2136700424749 /* Info.plist */,
+				CD5888352204A937009FB946 /* GCDBlackBox.swift */,
 			);
 			path = OnTheMap;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				CD7557E922024DCC0048C4FF /* APIConstants.swift in Sources */,
 				CD70D01D21F221E100424749 /* MapViewController.swift in Sources */,
 				CD7557E722024D920048C4FF /* API.swift in Sources */,
+				CD5888362204A937009FB946 /* GCDBlackBox.swift in Sources */,
 				CD70D00B21F2136700424749 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
