@@ -32,13 +32,17 @@ class LoginViewController: UIViewController {
         } else{
             sharedAPI.postSession(userName: emailTextField.text!, password: passwordTextField.text!, completion: { result,erro  in
                 if result!{
-                    print("loged in successfully")
-                    performUIUpdatesOnMain{self.debugLable.text = "loged in successfully"}
+                    print("logged in successfully")
+                    performUIUpdatesOnMain{
+                        self.debugLable.text = "logged in successfully"
+                        let controller = self.storyboard!.instantiateViewController(withIdentifier: "LocationsTabBarController") as! UITabBarController
+                        self.present(controller, animated: true, completion: nil)
+                    }
                 }
                 else{
                     print("Failed to login")
                     performUIUpdatesOnMain {
-                        self.debugLable.text = erro!
+                        self.debugLable.text = "Failed to login: \(erro!)"
                     }
                 }
             })

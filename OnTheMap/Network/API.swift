@@ -29,8 +29,6 @@ class API{
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        //request.addValue("text/plain", forHTTPHeaderField: "Content-Type")
-        //let data = "{\"udacity\":{\"username\":\(userName), \"password\":\(password)}".data(using:.utf8)
         request.httpBody = "{\"udacity\": {\"username\": \"\(userName)\", \"password\":\"\(password)\"}}".data(using: .utf8)
         let session = URLSession.shared
         /* 4. Make the request */
@@ -38,19 +36,16 @@ class API{
             func sendError(_ error: String) {
                 print(error)
                 completion(false, error)
-                
             }
             /* GUARD: Was there an error? */
             guard (error == nil) else {
                 sendError("There was an error with your request ")
                 return
             }
-//            let range = Range(5..<data!.count)
-//            let newData = data?.subdata(in: range) /* subset response data! */
-//            print(String(data: newData!, encoding: .utf8)!)
+
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                print("Your request returned a status code other than 2xx!")
+                sendError("Your request returned a status code other than 2xx!")
                 if (response as? HTTPURLResponse)?.statusCode == 403{
                     sendError("Account not found or invalid credentials")
                 }
@@ -59,7 +54,7 @@ class API{
             
             /* GUARD: Was there any data returned? */
             guard let data = data else {
-                print("No data was returned by the request!")
+                sendError("No data was returned by the request!")
                 return
             }
             
@@ -70,7 +65,7 @@ class API{
             do {
                 parsedResult = try JSONSerialization.jsonObject(with: newData, options: .allowFragments) as! [String:AnyObject]
             } catch {
-                print("Could not parse the data as JSON: '\(data)'")
+                sendError("Could not parse the data as JSON: '\(data)'")
                 return
             }
             //print(String(data: newData, encoding: .utf8)!)
@@ -79,11 +74,11 @@ class API{
             let sessionInfo = parsedResult["session"] as! [String:AnyObject]
             //print(accountInfo["key"]!)
             guard let userKey = accountInfo["key"]  as? String else {
-                print("user key is not found")
+                sendError("user key is not found")
                 return
             }
             guard let sessionID = sessionInfo["id"] as? String else {
-                print("Session id is not found")
+                sendError("Session id is not found")
                 return
             }
 //            print(userKey)
