@@ -11,12 +11,16 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    @IBAction func logout(_ sender: Any) {
+        API.sharedAPI.deleteSession(sessionID: self.appDelegate.sessionID!)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 
 }

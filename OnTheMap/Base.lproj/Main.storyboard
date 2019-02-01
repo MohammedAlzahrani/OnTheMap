@@ -143,7 +143,11 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" id="d15-uU-6Lb"/>
                     <navigationItem key="navigationItem" id="CjA-9B-s4I">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="NNp-kb-blg"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="NNp-kb-blg">
+                            <connections>
+                                <action selector="logout:" destination="BYZ-38-t0r" id="zx6-4R-FpN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="kCg-lH-GWp" id="p0B-OW-cP7"/>
