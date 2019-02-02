@@ -22,9 +22,8 @@ class LoginViewController: UIViewController {
         //appDelegate = UIApplication.shared.delegate as! AppDelegate
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(_ animated: Bool) {
+        self.debugLable.text = ""
     }
     @IBAction func loginButtonPressed(_ sender: Any) {
         if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty{

@@ -18,8 +18,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // Do any additional setup after loading the view.
     }
     @IBAction func logout(_ sender: Any) {
-        API.sharedAPI.deleteSession(sessionID: self.appDelegate.sessionID!)
-        self.dismiss(animated: true, completion: nil)
+        API.sharedAPI.deleteSession(sessionID: appDelegate.sessionID!) { (loggedout) in
+            performUIUpdatesOnMain {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        
     }
     
 

@@ -93,7 +93,7 @@ class API{
         
     }
     
-    func deleteSession(sessionID:String)  {
+    func deleteSession(sessionID:String, completion: @escaping (Bool?)->Void)  {
         let url = URL(string: APIConstants.session)
         var request = URLRequest(url: url!)
         request.httpMethod = "DELETE"
@@ -110,9 +110,14 @@ class API{
             if error != nil { // Handle error…
                 return
             }
-            let range = Range(5..<data!.count)
-            let newData = data?.subdata(in: range) /* subset response data! */
-            print(String(data: newData!, encoding: .utf8)!)
+            guard let data = data else {
+                print("No data was returned by the request!")
+                return
+            }
+            let range = Range(5..<data.count)
+            let newData = data.subdata(in: range) /* subset response data! */
+            print(String(data: newData, encoding: .utf8)!)
+            completion(nil)
         }
         task.resume()
     }

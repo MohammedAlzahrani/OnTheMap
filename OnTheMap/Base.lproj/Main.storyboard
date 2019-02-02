@@ -160,7 +160,7 @@
         <!--Root View Controller-->
         <scene sceneID="cHz-3N-o72">
             <objects>
-                <tableViewController id="utP-P2-LXj" sceneMemberID="viewController">
+                <tableViewController id="utP-P2-LXj" customClass="LocationsTableViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pEL-3L-qf8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -181,7 +181,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="jx7-vJ-Et1">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="zXw-wz-DCS"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="zXw-wz-DCS">
+                            <connections>
+                                <action selector="logout:" destination="utP-P2-LXj" id="Fvb-eB-fSb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4yc-eg-olN" userLabel="First Responder" sceneMemberID="firstResponder"/>
