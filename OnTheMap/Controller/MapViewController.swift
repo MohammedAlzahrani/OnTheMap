@@ -14,7 +14,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        API.sharedAPI.getStudentLocations { (success, error) in
+            if success! {
+                print(self.appDelegate.studentLocations[0].firstName)
+            }
+            else{
+                print("Failed to retrive student locations")
+            }
+        }
         // Do any additional setup after loading the view.
     }
     @IBAction func logout(_ sender: Any) {

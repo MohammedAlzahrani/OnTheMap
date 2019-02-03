@@ -121,4 +121,43 @@ class API{
         }
         task.resume()
     }
+    func getStudentLocations(completion: @escaping (_ success:Bool?, _ error:String?)->Void)  {
+        let url = URL(string: APIConstants.studentLocationsURL)
+        var request = URLRequest(url: url!)
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            func sendError(_ error: String) {
+                print(error)
+                completion(false, error)
+            }
+            guard  (error == nil) else {
+                sendError("There was an error with your request")
+                return
+            }
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                sendError("Your request returned a status code other than 2xx!")
+                return
+            }
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                sendError("No data was returned by the request!")
+                return
+            }
+
+            var locations: [String:[StudentLocation]]
+            do{
+                locations = try JSONDecoder().decode([String:[StudentLocation]].self, from: data)
+            } catch let jsonError{
+                sendError(jsonError.localizedDescription)
+                return
+            }
+            self.appDelegate.studentLocations = locations.values.first!
+            print(locations.values.first!)
+            completion(true, nil)
+        }
+        task.resume()
+    }
 }

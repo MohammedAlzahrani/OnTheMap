@@ -10,4 +10,5 @@ import Foundation
 
 struct APIConstants {
     static let session = "https://onthemap-api.udacity.com/v1/session"
+    static let studentLocationsURL = "https://parse.udacity.com/parse/classes/StudentLocation?limit=2"
 }
