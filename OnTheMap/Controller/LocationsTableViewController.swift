@@ -12,7 +12,13 @@ class LocationsTableViewController: UITableViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        API.sharedAPI.getStudentLocations { (success, error) in
+            if success! {
+                print("success")
+            } else {
+                print("Failed to retrive student locations")
+            }
+        }
     }
 
     @IBAction func logout(_ sender: Any) {
@@ -28,24 +34,29 @@ class LocationsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return appDelegate.studentLocations.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
         // Configure the cell...
-
+        let studentFullName = "\(appDelegate.studentLocations[indexPath.row].firstName) \(appDelegate.studentLocations[indexPath.row].lastName)"
+        cell.textLabel?.text = studentFullName
+        cell.detailTextLabel?.text = appDelegate.studentLocations[indexPath.row].mediaURL
         return cell
     }
-    */
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let url = URL(string: appDelegate.studentLocations[indexPath.row].mediaURL)
+        UIApplication.shared.open(url!)
+        print(url!)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
