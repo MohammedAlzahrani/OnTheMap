@@ -22,8 +22,6 @@ class API{
 //        print(userName)
 //        print(password)
         /* 1. Set the parameters */
-        //let username = "m4.w1991@gmail.com"
-        //let password = "Mm-123456"
         /* 2/3. Build the URL, Configure the request */
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
@@ -63,7 +61,7 @@ class API{
             let newData = data.subdata(in: range) /* subset response data! */
             let parsedResult: [String:AnyObject]!
             do {
-                parsedResult = try JSONSerialization.jsonObject(with: newData, options: .allowFragments) as! [String:AnyObject]
+                parsedResult = try JSONSerialization.jsonObject(with: newData, options: .allowFragments) as? [String:AnyObject]
             } catch {
                 sendError("Could not parse the data as JSON: '\(data)'")
                 return
