@@ -9,6 +9,7 @@
 import UIKit
 
 class LocationsTableViewController: UITableViewController {
+    @IBOutlet var locationTableView: UITableView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +18,7 @@ class LocationsTableViewController: UITableViewController {
                 print("success")
             } else {
                 print("Failed to retrive student locations")
+                self.showAlert(message: "Failed to retrive student locations")
             }
         }
     }
@@ -56,6 +58,28 @@ class LocationsTableViewController: UITableViewController {
         let url = URL(string: appDelegate.studentLocations[indexPath.row].mediaURL)
         UIApplication.shared.open(url!)
         print(url!)
+    }
+    @IBAction func addNewLocation(_ sender: Any) {
+    }
+    @IBAction func refreshData(_ sender: Any) {
+        API.sharedAPI.getStudentLocations { (success, error) in
+            if success! {
+                print("success")
+                performUIUpdatesOnMain {
+                    self.locationTableView.reloadData()
+                }
+                
+            } else {
+                print("Failed to refresh student locations")
+            }
+        }
+    }
+    func showAlert(message:String) {
+        performUIUpdatesOnMain {
+            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     /*
     // Override to support conditional editing of the table view.

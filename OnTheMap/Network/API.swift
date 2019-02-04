@@ -146,12 +146,13 @@ class API{
                 sendError("No data was returned by the request!")
                 return
             }
-
+            print(String(data: data, encoding: .utf8)!)
             var locations: [String:[StudentLocation]]
             do{
                 locations = try JSONDecoder().decode([String:[StudentLocation]].self, from: data)
             } catch let jsonError{
                 sendError(jsonError.localizedDescription)
+                print("json error")
                 return
             }
             self.appDelegate.studentLocations = locations.values.first!
