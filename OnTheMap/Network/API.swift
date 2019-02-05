@@ -159,4 +159,47 @@ class API{
         }
         task.resume()
     }
+    
+    func getStudentFullName(completion: @escaping (_ success:Bool?, _ error:String?)->Void)  {
+        guard let userKey = appDelegate.userKey else {
+            print("user key is not found")
+            return
+        }
+        let urlString = APIConstants.studentFullNameURL + userKey
+        let url = URL(string: urlString)
+        var request = URLRequest(url: url!)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            func sendError(_ error: String) {
+                print(error)
+                completion(false, error)
+            }
+            guard  (error == nil) else {
+                sendError("There was an error with your request")
+                return
+            }
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                sendError("Your request returned a status code other than 2xx!")
+                return
+            }
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                sendError("No data was returned by the request!")
+                return
+            }
+            print(String(data: data, encoding: .utf8)!)
+            let parsedResult: [String:AnyObject]!
+            do {
+                parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:AnyObject]
+            } catch {
+                sendError("Could not parse the data as JSON: '\(data)'")
+                return
+            }
+            self.appDelegate.newStudentLocation?.firstName = parsedResult["first_name"] as! String
+            self.appDelegate.newStudentLocation?.lastName = parsedResult["last_name"] as! String
+            completion(true, nil)
+        }
+        task.resume()
+    }
 }

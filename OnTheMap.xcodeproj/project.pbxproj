@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CD156B5B2208CE350097D8AF /* NewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD156B5A2208CE350097D8AF /* NewLocationViewController.swift */; };
+		CD156B5D2208E1060097D8AF /* NewLocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD156B5C2208E1060097D8AF /* NewLocationMapViewController.swift */; };
 		CD5562662204F55600C88047 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5562652204F55600C88047 /* MapViewController.swift */; };
 		CD5888362204A937009FB946 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5888352204A937009FB946 /* GCDBlackBox.swift */; };
 		CD70D00B21F2136700424749 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70D00A21F2136700424749 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		CD156B5A2208CE350097D8AF /* NewLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLocationViewController.swift; sourceTree = "<group>"; };
+		CD156B5C2208E1060097D8AF /* NewLocationMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLocationMapViewController.swift; sourceTree = "<group>"; };
 		CD5562652204F55600C88047 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CD5888352204A937009FB946 /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		CD70D00721F2136700424749 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +102,7 @@
 				CD5562652204F55600C88047 /* MapViewController.swift */,
 				CD86C6332205E24E00DD38C3 /* LocationsTableViewController.swift */,
 				CD156B5A2208CE350097D8AF /* NewLocationViewController.swift */,
+				CD156B5C2208E1060097D8AF /* NewLocationMapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				CD86C6342205E24E00DD38C3 /* LocationsTableViewController.swift in Sources */,
 				CD70D00D21F2136700424749 /* LoginViewController.swift in Sources */,
 				CD7557E922024DCC0048C4FF /* APIConstants.swift in Sources */,
+				CD156B5D2208E1060097D8AF /* NewLocationMapViewController.swift in Sources */,
 				CD7557E722024D920048C4FF /* API.swift in Sources */,
 				CD5888362204A937009FB946 /* GCDBlackBox.swift in Sources */,
 				CD70D00B21F2136700424749 /* AppDelegate.swift in Sources */,
