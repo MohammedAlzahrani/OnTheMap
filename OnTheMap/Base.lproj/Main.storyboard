@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zKG-II-gZM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hmS-Pf-eTw">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -148,19 +148,12 @@
                                 <action selector="logout:" destination="BYZ-38-t0r" id="zx6-4R-FpN"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="ZAO-Z3-1s2">
-                                <connections>
-                                    <action selector="addNewLocation:" destination="BYZ-38-t0r" id="KrX-IN-8Jk"/>
-                                    <segue destination="28O-JK-JD0" kind="presentation" id="1kC-3i-XiK"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="refresh" id="QmN-UF-FPb">
-                                <connections>
-                                    <action selector="refreshData:" destination="BYZ-38-t0r" id="v0d-dX-rYl"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZAO-Z3-1s2">
+                            <connections>
+                                <action selector="addNewLocation:" destination="BYZ-38-t0r" id="KrX-IN-8Jk"/>
+                                <segue destination="28O-JK-JD0" kind="presentation" id="1kC-3i-XiK"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="kCg-lH-GWp" id="p0B-OW-cP7"/>
@@ -328,19 +321,12 @@
                                 <action selector="logout:" destination="utP-P2-LXj" id="Fvb-eB-fSb"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="70c-tT-n1j">
-                                <connections>
-                                    <action selector="addNewLocation:" destination="utP-P2-LXj" id="P2Q-vt-ApL"/>
-                                    <segue destination="28O-JK-JD0" kind="presentation" id="Z6W-Mx-wKq"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="refresh" id="JIY-L7-4JD">
-                                <connections>
-                                    <action selector="refreshData:" destination="utP-P2-LXj" id="7Wm-HM-A0p"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="70c-tT-n1j">
+                            <connections>
+                                <action selector="addNewLocation:" destination="utP-P2-LXj" id="P2Q-vt-ApL"/>
+                                <segue destination="28O-JK-JD0" kind="presentation" id="Z6W-Mx-wKq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

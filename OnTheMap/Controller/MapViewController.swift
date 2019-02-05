@@ -101,15 +101,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             }
         }
     }
-    @IBAction func refreshData(_ sender: Any) {
-        API.sharedAPI.getStudentLocations { (success, error) in
-            if success! {
-                print("success")
-            } else {
-                print("Failed to refresh student locations")
-            }
-        }
-    }
+
     @IBAction func addNewLocation(_ sender: Any) {
     }
     

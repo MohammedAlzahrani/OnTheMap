@@ -20,16 +20,30 @@ class NewLocationMapViewController: UIViewController, MKMapViewDelegate {
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.newStudentLocation = self.appDelegate.newStudentLocation
+        //self.newStudentLocation = self.appDelegate.newStudentLocation
     }
     
     @IBAction func submitNewLocation(_ sender: Any) {
         self.appDelegate.newStudentLocation["uniqueKey"] = self.appDelegate.userKey!
+        self.sharedAPI.getStudentFullName { (success, error) in
+            if success!{
+//                self.newStudentLocation!["firstName"] = "moh"
+//                self.newStudentLocation!["lastName"] = "ali"
+                self.newStudentLocation = self.appDelegate.newStudentLocation
+                print(self.newStudentLocation!)
+                
+                self.sharedAPI.postNewLocation(newLocationDict: self.newStudentLocation!, completion: { (success, error) in
+                    if success!{
+                        print("posted successfuly")
+                    } else{
+                        print(error!)
+                    }
+                })
+            } else{
+                print(error!)
+            }
+        }
         
-        self.newStudentLocation!["firstName"] = "moh"
-        self.newStudentLocation!["lastName"] = "ali"
-        self.newStudentLocation = self.appDelegate.newStudentLocation
-        print(self.newStudentLocation!)
         // do get full name first
     }
 

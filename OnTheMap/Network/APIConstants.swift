@@ -12,4 +12,5 @@ struct APIConstants {
     static let session = "https://onthemap-api.udacity.com/v1/session"
     static let studentLocationsURL = "https://parse.udacity.com/parse/classes/StudentLocation?limit=50"
     static let studentFullNameURL = "https://onthemap-api.udacity.com/v1/users/"
+    static let studentNewLocationURL = "https://parse.udacity.com/parse/classes/StudentLocation"
 }
