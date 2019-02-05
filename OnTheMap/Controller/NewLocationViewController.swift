@@ -35,13 +35,14 @@ class NewLocationViewController: UIViewController, CLLocationManagerDelegate {
             // Use your location
             print(location.coordinate.latitude)
             print(location.coordinate.longitude)
+            //self.appDelegate.newStudentLocation
+            self.appDelegate.newStudentLocation["mapString"] = address
+            self.appDelegate.newStudentLocation["latitude"] = location.coordinate.latitude
+            self.appDelegate.newStudentLocation["longitude"] = location.coordinate.longitude
+            print(self.appDelegate.newStudentLocation)
             // TODO:-
             let storyboard = UIStoryboard (name: "Main", bundle: nil)
             let mapVC = storyboard.instantiateViewController(withIdentifier: "NewLocationMap")as! NewLocationMapViewController
-            mapVC.newStudentLocation?.uniqueKey = AppDeleg
-            mapVC.newStudentLocation?.mapString = address
-            mapVC.newStudentLocation?.latitude = location.coordinate.latitude
-            mapVC.newStudentLocation?.longitude = location.coordinate.longitude
             self.navigationController?.pushViewController(mapVC, animated: true)
         }
     }

@@ -196,8 +196,8 @@ class API{
                 sendError("Could not parse the data as JSON: '\(data)'")
                 return
             }
-            self.appDelegate.newStudentLocation?.firstName = parsedResult["first_name"] as! String
-            self.appDelegate.newStudentLocation?.lastName = parsedResult["last_name"] as! String
+            self.appDelegate.newStudentLocation["firstName"] = parsedResult["first_name"] as! String
+            self.appDelegate.newStudentLocation["lastName"] = parsedResult["last_name"] as! String
             completion(true, nil)
         }
         task.resume()
