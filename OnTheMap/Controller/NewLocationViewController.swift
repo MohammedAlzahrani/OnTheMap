@@ -9,14 +9,17 @@
 import UIKit
 import CoreLocation
 
-class NewLocationViewController: UIViewController, CLLocationManagerDelegate {
+class NewLocationViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
     @IBOutlet weak var findLocationButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var locationNameTextField: UITextField!
     @IBOutlet weak var urlTextField: UITextField!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.locationNameTextField.delegate = self
+        self.urlTextField.delegate = self
         self.configureUI(enabled: false)
         // Do any additional setup after loading the view.
 
@@ -67,6 +70,9 @@ class NewLocationViewController: UIViewController, CLLocationManagerDelegate {
             self.findLocationButton.isEnabled = true
         }
     }
-    
-
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // dismiss kyboard when return is pressed
+        textField.resignFirstResponder()
+        return true;
+    }
 }

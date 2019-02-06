@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -18,6 +18,8 @@ class LoginViewController: UIViewController {
     //var appDelegate: AppDelegate!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
         //appDelegate = UIApplication.shared.delegate as! AppDelegate
     }
@@ -47,6 +49,11 @@ class LoginViewController: UIViewController {
             })
             
         }
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // dismiss kyboard when return is pressed
+        textField.resignFirstResponder()
+        return true;
     }
 
 }

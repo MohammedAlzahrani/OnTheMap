@@ -77,11 +77,11 @@
 				CD7557E3220246190048C4FF /* Controller */,
 				CD7557E2220245F90048C4FF /* Model */,
 				CD70D00A21F2136700424749 /* AppDelegate.swift */,
+				CD5888352204A937009FB946 /* GCDBlackBox.swift */,
 				CD70D00E21F2136700424749 /* Main.storyboard */,
 				CD70D01121F2136700424749 /* Assets.xcassets */,
 				CD70D01321F2136700424749 /* LaunchScreen.storyboard */,
 				CD70D01621F2136700424749 /* Info.plist */,
-				CD5888352204A937009FB946 /* GCDBlackBox.swift */,
 			);
 			path = OnTheMap;
 			sourceTree = "<group>";
