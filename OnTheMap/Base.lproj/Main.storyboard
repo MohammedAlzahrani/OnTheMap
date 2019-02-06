@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fm-1C-b2S">
-                                <rect key="frame" x="48" y="221" width="224" height="30"/>
+                                <rect key="frame" x="48" y="182" width="224" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kj4-l0-gvD">
                                         <rect key="frame" x="0.0" y="0.0" width="41" height="30"/>
@@ -36,7 +36,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DmU-23-aAE">
-                                <rect key="frame" x="16" y="293" width="256" height="30"/>
+                                <rect key="frame" x="16" y="236" width="256" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FN5-eE-qLm">
                                         <rect key="frame" x="0.0" y="0.0" width="74" height="30"/>
@@ -48,22 +48,26 @@
                                         <rect key="frame" x="74" y="0.0" width="182" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gqa-LR-la4">
-                                <rect key="frame" x="23" y="329" width="274" height="216"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="K86-uf-RTl">
+                                <rect key="frame" x="150" y="270" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="gqa-LR-la4">
+                                <rect key="frame" x="23" y="293" width="274" height="216"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bH1-xd-Sbn">
-                                        <rect key="frame" x="118" y="0.0" width="38" height="108"/>
+                                        <rect key="frame" x="118" y="0.0" width="38" height="118"/>
                                         <state key="normal" title="Login"/>
                                         <connections>
                                             <action selector="loginButtonPressed:" destination="hmS-Pf-eTw" eventType="touchUpInside" id="nKA-98-7Rr"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqq-zs-1SN">
-                                        <rect key="frame" x="0.0" y="108" width="274" height="108"/>
+                                        <rect key="frame" x="0.0" y="98" width="274" height="118"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -79,23 +83,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6fm-1C-b2S" firstAttribute="top" secondItem="bJc-FO-syU" secondAttribute="top" constant="201" id="HhF-qs-TuC"/>
+                            <constraint firstItem="6fm-1C-b2S" firstAttribute="top" secondItem="bJc-FO-syU" secondAttribute="top" constant="162" id="HhF-qs-TuC"/>
                             <constraint firstItem="DmU-23-aAE" firstAttribute="leading" secondItem="bJc-FO-syU" secondAttribute="leading" constant="16" id="IAa-wL-geR"/>
-                            <constraint firstItem="gqa-LR-la4" firstAttribute="top" secondItem="DmU-23-aAE" secondAttribute="bottom" constant="6" id="PZG-pj-wLA"/>
+                            <constraint firstItem="gqa-LR-la4" firstAttribute="top" secondItem="DmU-23-aAE" secondAttribute="bottom" constant="27" id="PZG-pj-wLA"/>
                             <constraint firstItem="gqa-LR-la4" firstAttribute="leading" secondItem="bJc-FO-syU" secondAttribute="leading" constant="23" id="WhT-uC-Phi"/>
                             <constraint firstItem="bJc-FO-syU" firstAttribute="trailing" secondItem="gqa-LR-la4" secondAttribute="trailing" constant="23" id="X5F-Kn-qs4"/>
-                            <constraint firstItem="bJc-FO-syU" firstAttribute="bottom" secondItem="gqa-LR-la4" secondAttribute="bottom" constant="23" id="YNp-pg-P9f"/>
+                            <constraint firstItem="bJc-FO-syU" firstAttribute="bottom" secondItem="gqa-LR-la4" secondAttribute="bottom" constant="59" id="YNp-pg-P9f"/>
                             <constraint firstItem="6fm-1C-b2S" firstAttribute="leading" secondItem="bJc-FO-syU" secondAttribute="leading" constant="48" id="bSV-HL-DFm"/>
                             <constraint firstItem="bJc-FO-syU" firstAttribute="trailing" secondItem="DmU-23-aAE" secondAttribute="trailing" constant="48" id="ipe-SP-Ubl"/>
-                            <constraint firstItem="DmU-23-aAE" firstAttribute="top" secondItem="6fm-1C-b2S" secondAttribute="bottom" constant="42" id="sT5-rn-0mT"/>
+                            <constraint firstItem="DmU-23-aAE" firstAttribute="top" secondItem="6fm-1C-b2S" secondAttribute="bottom" constant="24" id="sT5-rn-0mT"/>
                             <constraint firstItem="bJc-FO-syU" firstAttribute="trailing" secondItem="6fm-1C-b2S" secondAttribute="trailing" constant="48" id="tvf-NO-rAF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bJc-FO-syU"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="K86-uf-RTl" id="6df-Lb-uYU"/>
                         <outlet property="debugLable" destination="oqq-zs-1SN" id="KGd-KM-lJe"/>
                         <outlet property="emailTextField" destination="397-Bj-84Z" id="NL1-G9-cJj"/>
-                        <outlet property="loginButton" destination="bH1-xd-Sbn" id="fP1-xe-CEP"/>
+                        <outlet property="loginButton" destination="bH1-xd-Sbn" id="5lR-WH-NCc"/>
                         <outlet property="passwordTextField" destination="V56-Qf-1GV" id="4wL-bk-e3p"/>
                     </connections>
                 </viewController>
