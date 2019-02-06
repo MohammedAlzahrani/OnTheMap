@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 
 class NewLocationViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
+    // MARK:- Outlets
     @IBOutlet weak var findLocationButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var locationNameTextField: UITextField!
@@ -21,9 +22,9 @@ class NewLocationViewController: UIViewController, CLLocationManagerDelegate, UI
         self.locationNameTextField.delegate = self
         self.urlTextField.delegate = self
         self.configureUI(enabled: false)
-        // Do any additional setup after loading the view.
-
     }
+    
+    // MARK:- Actions
     @IBAction func findLocation(_ sender: Any) {
         
         guard let address = locationNameTextField.text else{
@@ -31,6 +32,7 @@ class NewLocationViewController: UIViewController, CLLocationManagerDelegate, UI
             return
         }
         configureUI(enabled: true)
+        // converting address to long and lat
         let geoCoder = CLGeocoder()
         geoCoder.geocodeAddressString(address) { (placemarks, error) in
             guard let placemarks = placemarks, let location = placemarks.first?.location
@@ -39,17 +41,12 @@ class NewLocationViewController: UIViewController, CLLocationManagerDelegate, UI
                     self.configureUI(enabled: false)
                     return
             }
-            
-            // Use your location
-            print(location.coordinate.latitude)
-            print(location.coordinate.longitude)
-            //self.appDelegate.newStudentLocation
+            // storing the new location data
             self.appDelegate.newStudentLocation["mapString"] = address
             self.appDelegate.newStudentLocation["latitude"] = location.coordinate.latitude
             self.appDelegate.newStudentLocation["longitude"] = location.coordinate.longitude
-            print(self.appDelegate.newStudentLocation)
-            
             self.configureUI(enabled: false)
+            // showing the new location on map
             let storyboard = UIStoryboard (name: "Main", bundle: nil)
             let mapVC = storyboard.instantiateViewController(withIdentifier: "NewLocationMap")as! NewLocationMapViewController
             self.navigationController?.pushViewController(mapVC, animated: true)
@@ -59,6 +56,7 @@ class NewLocationViewController: UIViewController, CLLocationManagerDelegate, UI
     @IBAction func cancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     func configureUI(enabled:Bool) {
         if enabled{
             self.activityIndicator.isHidden = false

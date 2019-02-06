@@ -10,60 +10,48 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
+    // MARK:- Outlets
     @IBOutlet weak var mapView: MKMapView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    // MARK:- Map related fuctions
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.delegate = self
+        // loading locations
         API.sharedAPI.getStudentLocations { (success, error) in
             if success! {
                 performUIUpdatesOnMain {
-                
+                // constructing annotations for locations
                 var annotations = [MKPointAnnotation]()
                 let locations = self.appDelegate.studentLocations
                 for location in locations {
-                    
-        
                     let lat = CLLocationDegrees(location.latitude )
                     let long = CLLocationDegrees(location.longitude )
-                    
-                    // The lat and long are used to create a CLLocationCoordinates2D instance.
                     let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
                     let firstName = location.firstName ?? "NA"
                     let lastName = location.lastName ?? "NA"
                     let mediaURL = location.mediaURL ?? "NA"
-                    
-                    // Here we create the annotation and set its coordiate, title, and subtitle properties
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = coordinate
                     annotation.title = "\(firstName) \(lastName)"
                     annotation.subtitle = mediaURL
-                    
-                    // Finally we place the annotation in an array of annotations.
                     annotations.append(annotation)
                 }
-                // When the array is complete, we add the annotations to the map.
                 self.mapView.addAnnotations(annotations)
             }
             }
+            // loading locations failure
             else{
-                print("Failed to retrive student locations")
-                print(error!)
-               // performUIUpdatesOnMain {
                     self.showAlert(message: "Failed to retrive student locations")
-                //}
             }
         }
-        // Do any additional setup after loading the view.
-        
-
     }
+    // annotations dicoration
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseId = "pin"
-        
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-        
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
@@ -73,7 +61,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         else {
             pinView!.annotation = annotation
         }
-        
         return pinView
     }
 
@@ -87,14 +74,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             }
         }
     }
-//    func showAlert(message:String) {
-//        performUIUpdatesOnMain {
-//        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//        self.present(alert, animated: true, completion: nil)
-//        }
-//    }
+    // MARK:- Actions
     @IBAction func logout(_ sender: Any) {
+        // logout request
         API.sharedAPI.deleteSession(sessionID: appDelegate.sessionID!) { (loggedout) in
             performUIUpdatesOnMain {
                 self.dismiss(animated: true, completion: nil)

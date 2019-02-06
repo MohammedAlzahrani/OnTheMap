@@ -9,56 +9,59 @@
 import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
-
+    // MARK:- Outlets
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var debugLable: UILabel!
     let sharedAPI = API.sharedAPI
-    //var appDelegate: AppDelegate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // text delegation
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
         configureUI(enabled: false)
-        // Do any additional setup after loading the view, typically from a nib.
-        //appDelegate = UIApplication.shared.delegate as! AppDelegate
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.debugLable.text = ""
     }
+    // MARK:- Actions
     @IBAction func loginButtonPressed(_ sender: Any) {
         if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty{
             debugLable.text = "email or password field is empty"
         } else{
             configureUI(enabled: true)
+            // login request
             sharedAPI.postSession(userName: emailTextField.text!, password: passwordTextField.text!, completion: { result,erro  in
+                // successful login
                 if result!{
-                    print("logged in successfully")
                     performUIUpdatesOnMain{
                         self.debugLable.text = "logged in successfully"
                         let controller = self.storyboard!.instantiateViewController(withIdentifier: "LocationsTabBarController") as! UITabBarController
                         self.present(controller, animated: true, completion: nil)
                     }
                 }
+                // login failure
                 else{
-                    print("Failed to login")
                     performUIUpdatesOnMain {
                         self.debugLable.text = "Failed to login: \(erro!)"
                         self.configureUI(enabled: false)
                     }
                 }
             })
-            
         }
     }
+    // MARK:- Text and UI configuration
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // dismiss kyboard when return is pressed
         textField.resignFirstResponder()
         return true;
     }
+    
     func configureUI(enabled:Bool) {
         if enabled{
             self.activityIndicator.isHidden = false
