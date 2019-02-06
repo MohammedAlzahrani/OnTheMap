@@ -150,7 +150,6 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZAO-Z3-1s2">
                             <connections>
-                                <action selector="addNewLocation:" destination="BYZ-38-t0r" id="KrX-IN-8Jk"/>
                                 <segue destination="28O-JK-JD0" kind="presentation" id="1kC-3i-XiK"/>
                             </connections>
                         </barButtonItem>
@@ -316,7 +315,6 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="70c-tT-n1j">
                             <connections>
-                                <action selector="addNewLocation:" destination="utP-P2-LXj" id="P2Q-vt-ApL"/>
                                 <segue destination="28O-JK-JD0" kind="presentation" id="Z6W-Mx-wKq"/>
                             </connections>
                         </barButtonItem>
@@ -367,6 +365,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Z6W-Mx-wKq"/>
+        <segue reference="1kC-3i-XiK"/>
     </inferredMetricsTieBreakers>
 </document>

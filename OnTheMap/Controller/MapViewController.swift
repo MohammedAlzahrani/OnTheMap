@@ -17,7 +17,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.mapView.delegate = self
         API.sharedAPI.getStudentLocations { (success, error) in
             if success! {
-                print(self.appDelegate.studentLocations[0].firstName)
                 performUIUpdatesOnMain {
                 
                 var annotations = [MKPointAnnotation]()
@@ -85,17 +84,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
                 app.open(URL(string: toOpen)!)
-                print("trying to open url")
             }
         }
     }
-    func showAlert(message:String) {
-        performUIUpdatesOnMain {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-        }
-    }
+//    func showAlert(message:String) {
+//        performUIUpdatesOnMain {
+//        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//        self.present(alert, animated: true, completion: nil)
+//        }
+//    }
     @IBAction func logout(_ sender: Any) {
         API.sharedAPI.deleteSession(sessionID: appDelegate.sessionID!) { (loggedout) in
             performUIUpdatesOnMain {
@@ -104,8 +102,5 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
 
-    @IBAction func addNewLocation(_ sender: Any) {
-    }
-    
 
 }

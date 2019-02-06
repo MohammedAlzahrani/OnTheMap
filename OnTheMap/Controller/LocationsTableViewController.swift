@@ -63,15 +63,14 @@ class LocationsTableViewController: UITableViewController {
         UIApplication.shared.open(url)
         print(url)
     }
-    @IBAction func addNewLocation(_ sender: Any) {
-    }
+
     
-    func showAlert(message:String) {
-        performUIUpdatesOnMain {
-            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
+//    func showAlert(message:String) {
+//        performUIUpdatesOnMain {
+//            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//            self.present(alert, animated: true, completion: nil)
+//        }
+//    }
 
 }

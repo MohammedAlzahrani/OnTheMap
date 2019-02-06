@@ -20,15 +20,16 @@ class NewLocationViewController: UIViewController, CLLocationManagerDelegate {
 
     }
     @IBAction func findLocation(_ sender: Any) {
-        let address = locationNameTextField.text!
+        guard let address = locationNameTextField.text else{
+            self.showAlert(message: "The location field is empty!")
+            return
+        }
         
         let geoCoder = CLGeocoder()
         geoCoder.geocodeAddressString(address) { (placemarks, error) in
-            guard
-                let placemarks = placemarks,
-                let location = placemarks.first?.location
+            guard let placemarks = placemarks, let location = placemarks.first?.location
                 else {
-                    // handle no location found
+                    self.showAlert(message: "geocoding fails")
                     return
             }
             
@@ -40,7 +41,7 @@ class NewLocationViewController: UIViewController, CLLocationManagerDelegate {
             self.appDelegate.newStudentLocation["latitude"] = location.coordinate.latitude
             self.appDelegate.newStudentLocation["longitude"] = location.coordinate.longitude
             print(self.appDelegate.newStudentLocation)
-            // TODO:-
+            
             let storyboard = UIStoryboard (name: "Main", bundle: nil)
             let mapVC = storyboard.instantiateViewController(withIdentifier: "NewLocationMap")as! NewLocationMapViewController
             self.navigationController?.pushViewController(mapVC, animated: true)
