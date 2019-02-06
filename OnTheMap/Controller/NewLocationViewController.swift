@@ -10,26 +10,30 @@ import UIKit
 import CoreLocation
 
 class NewLocationViewController: UIViewController, CLLocationManagerDelegate {
+    @IBOutlet weak var findLocationButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var locationNameTextField: UITextField!
     @IBOutlet weak var urlTextField: UITextField!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.configureUI(enabled: false)
         // Do any additional setup after loading the view.
 
     }
     @IBAction func findLocation(_ sender: Any) {
+        
         guard let address = locationNameTextField.text else{
             self.showAlert(message: "The location field is empty!")
             return
         }
-        
+        configureUI(enabled: true)
         let geoCoder = CLGeocoder()
         geoCoder.geocodeAddressString(address) { (placemarks, error) in
             guard let placemarks = placemarks, let location = placemarks.first?.location
                 else {
                     self.showAlert(message: "geocoding fails")
+                    self.configureUI(enabled: false)
                     return
             }
             
@@ -42,6 +46,7 @@ class NewLocationViewController: UIViewController, CLLocationManagerDelegate {
             self.appDelegate.newStudentLocation["longitude"] = location.coordinate.longitude
             print(self.appDelegate.newStudentLocation)
             
+            self.configureUI(enabled: false)
             let storyboard = UIStoryboard (name: "Main", bundle: nil)
             let mapVC = storyboard.instantiateViewController(withIdentifier: "NewLocationMap")as! NewLocationMapViewController
             self.navigationController?.pushViewController(mapVC, animated: true)
@@ -50,6 +55,17 @@ class NewLocationViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func cancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    func configureUI(enabled:Bool) {
+        if enabled{
+            self.activityIndicator.isHidden = false
+            self.activityIndicator.startAnimating()
+            self.findLocationButton.isEnabled = false
+        } else{
+            self.activityIndicator.isHidden = true
+            self.activityIndicator.stopAnimating()
+            self.findLocationButton.isEnabled = true
+        }
     }
     
 

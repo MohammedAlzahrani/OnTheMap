@@ -189,6 +189,10 @@
                                     <action selector="findLocation:" destination="Fbx-tc-taI" eventType="touchUpInside" id="awy-kh-dCI"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kKK-JR-LfJ">
+                                <rect key="frame" x="150" y="211" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -212,6 +216,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="kKK-JR-LfJ" id="GjS-3h-RXb"/>
+                        <outlet property="findLocationButton" destination="Zre-cV-18j" id="RlD-0x-AfA"/>
                         <outlet property="locationNameTextField" destination="g3b-HV-XU3" id="gxM-vX-2qo"/>
                         <outlet property="urlTextField" destination="86M-yA-Hgc" id="R4O-g0-LOl"/>
                     </connections>
