@@ -29,15 +29,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     
                     // The lat and long are used to create a CLLocationCoordinates2D instance.
                     let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                    
-                    let first = location.firstName
-                    let last = location.lastName
+                    let firstName = location.firstName ?? "NA"
+                    let lastName = location.lastName ?? "NA"
                     let mediaURL = location.mediaURL
                     
                     // Here we create the annotation and set its coordiate, title, and subtitle properties
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = coordinate
-                    annotation.title = "\(first) \(last)"
+                    annotation.title = "\(firstName) \(lastName)"
                     annotation.subtitle = mediaURL
                     
                     // Finally we place the annotation in an array of annotations.

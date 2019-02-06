@@ -48,16 +48,20 @@ class LocationsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         // Configure the cell...
-        let studentFullName = "\(appDelegate.studentLocations[indexPath.row].firstName) \(appDelegate.studentLocations[indexPath.row].lastName)"
+        let firstName = appDelegate.studentLocations[indexPath.row].firstName ?? "NA"
+        let lastName = appDelegate.studentLocations[indexPath.row].lastName ?? "NA"
+        let studentFullName = "\(firstName) \(lastName)"
         cell.textLabel?.text = studentFullName
         cell.detailTextLabel?.text = appDelegate.studentLocations[indexPath.row].mediaURL
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let url = URL(string: appDelegate.studentLocations[indexPath.row].mediaURL)
-        UIApplication.shared.open(url!)
-        print(url!)
+        guard let url = URL(string: appDelegate.studentLocations[indexPath.row].mediaURL!) else{
+            return
+        }
+        UIApplication.shared.open(url)
+        print(url)
     }
     @IBAction func addNewLocation(_ sender: Any) {
     }

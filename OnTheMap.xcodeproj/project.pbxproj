@@ -19,7 +19,6 @@
 		CD7557E722024D920048C4FF /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7557E622024D920048C4FF /* API.swift */; };
 		CD7557E922024DCC0048C4FF /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7557E822024DCC0048C4FF /* APIConstants.swift */; };
 		CD7557EB22024DF70048C4FF /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7557EA22024DF70048C4FF /* StudentLocation.swift */; };
-		CD7557ED22024E110048C4FF /* LocationsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7557EC22024E110048C4FF /* LocationsData.swift */; };
 		CD86C6342205E24E00DD38C3 /* LocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD86C6332205E24E00DD38C3 /* LocationsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +37,6 @@
 		CD7557E622024D920048C4FF /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		CD7557E822024DCC0048C4FF /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		CD7557EA22024DF70048C4FF /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
-		CD7557EC22024E110048C4FF /* LocationsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsData.swift; sourceTree = "<group>"; };
 		CD86C6332205E24E00DD38C3 /* LocationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,7 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				CD7557EA22024DF70048C4FF /* StudentLocation.swift */,
-				CD7557EC22024E110048C4FF /* LocationsData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -195,7 +192,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD7557ED22024E110048C4FF /* LocationsData.swift in Sources */,
 				CD7557EB22024DF70048C4FF /* StudentLocation.swift in Sources */,
 				CD86C6342205E24E00DD38C3 /* LocationsTableViewController.swift in Sources */,
 				CD70D00D21F2136700424749 /* LoginViewController.swift in Sources */,

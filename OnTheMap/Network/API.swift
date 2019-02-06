@@ -145,16 +145,18 @@ class API{
                 return
             }
             print(String(data: data, encoding: .utf8)!)
-            var locations: [String:[StudentLocation]]
+//            var locations: [String:[StudentLocation]]
+            var locationsDict: jsonResponse
             do{
-                locations = try JSONDecoder().decode([String:[StudentLocation]].self, from: data)
+                locationsDict = try JSONDecoder().decode(jsonResponse.self, from: data)
             } catch let jsonError{
                 sendError(jsonError.localizedDescription)
                 print("json error")
+                print(jsonError)
                 return
             }
-            self.appDelegate.studentLocations = locations.values.first!
-            print(locations.values.first!)
+            self.appDelegate.studentLocations = locationsDict.results
+            print(locationsDict.results)
             completion(true, nil)
         }
         task.resume()
