@@ -46,13 +46,13 @@ class LocationsTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         // Configure the cell...
         let firstName = appDelegate.studentLocations[indexPath.row].firstName ?? "NA"
         let lastName = appDelegate.studentLocations[indexPath.row].lastName ?? "NA"
         let studentFullName = "\(firstName) \(lastName)"
         cell.textLabel?.text = studentFullName
-        cell.detailTextLabel?.text = appDelegate.studentLocations[indexPath.row].mediaURL
+        //cell.detailTextLabel?.text = appDelegate.studentLocations[indexPath.row].updatedAt
         return cell
     }
     

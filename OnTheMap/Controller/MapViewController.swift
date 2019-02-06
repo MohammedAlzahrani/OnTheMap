@@ -14,6 +14,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mapView.delegate = self
         API.sharedAPI.getStudentLocations { (success, error) in
             if success! {
                 print(self.appDelegate.studentLocations[0].firstName)
@@ -31,7 +32,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
                     let firstName = location.firstName ?? "NA"
                     let lastName = location.lastName ?? "NA"
-                    let mediaURL = location.mediaURL
+                    let mediaURL = location.mediaURL ?? "NA"
                     
                     // Here we create the annotation and set its coordiate, title, and subtitle properties
                     let annotation = MKPointAnnotation()
@@ -76,13 +77,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         return pinView
     }
+
     // This delegate method is implemented to respond to taps. It opens the system browser
     // to the URL specified in the annotationViews subtitle property.
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
-                app.openURL(URL(string: toOpen)!)
+                app.open(URL(string: toOpen)!)
+                print("trying to open url")
             }
         }
     }
