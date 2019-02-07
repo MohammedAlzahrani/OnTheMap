@@ -51,13 +51,15 @@ class LocationsTableViewController: UITableViewController {
         let lastName = appDelegate.studentLocations[indexPath.row].lastName ?? "NA"
         let studentFullName = "\(firstName) \(lastName)"
         cell.textLabel?.text = studentFullName
+        cell.detailTextLabel?.text = appDelegate.studentLocations[indexPath.row].mediaURL ?? "NA"
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = URL(string: appDelegate.studentLocations[indexPath.row].mediaURL!) else{
+        guard let urlString = appDelegate.studentLocations[indexPath.row].mediaURL else{
             return
         }
-        UIApplication.shared.open(url)
+        let url = URL(string: urlString)
+        UIApplication.shared.open(url!)
     }
 }

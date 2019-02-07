@@ -27,6 +27,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         self.debugLable.text = ""
+        configureUI(enabled: false)
     }
     // MARK:- Actions
     @IBAction func loginButtonPressed(_ sender: Any) {

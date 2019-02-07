@@ -26,8 +26,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 var annotations = [MKPointAnnotation]()
                 let locations = self.appDelegate.studentLocations
                 for location in locations {
-                    let lat = CLLocationDegrees(location.latitude )
-                    let long = CLLocationDegrees(location.longitude )
+                    let lat = CLLocationDegrees(location.latitude ?? 0.0 )
+                    let long = CLLocationDegrees(location.longitude ?? 0.0 )
                     let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
                     let firstName = location.firstName ?? "NA"
                     let lastName = location.lastName ?? "NA"
