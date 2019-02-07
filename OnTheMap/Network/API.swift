@@ -9,19 +9,12 @@
 import Foundation
 import UIKit
 class API{
-    //var appDelegate: AppDelegate!
-    //var userKey: Int?
+    
     static let sharedAPI = API()
     var appDelegate = UIApplication.shared.delegate as! AppDelegate
-//    init() {
-//        appDelegate = UIApplication.shared.delegate as! AppDelegate
-//    }
-    //let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     func postSession(userName:String, password:String, completion: @escaping (_ success:Bool?, _ error:String?)->Void){
         let url = URL(string: APIConstants.session)
-//        print(userName)
-//        print(password)
-        /* 1. Set the parameters */
         /* 2/3. Build the URL, Configure the request */
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
@@ -56,7 +49,7 @@ class API{
                 return
             }
             
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
+            /* 5/6. Parse the data and use the data */
             let range = Range(5..<data.count)
             let newData = data.subdata(in: range) /* subset response data! */
             let parsedResult: [String:AnyObject]!
@@ -66,11 +59,9 @@ class API{
                 sendError("Could not parse the data as JSON: '\(data)'")
                 return
             }
-            //print(String(data: newData, encoding: .utf8)!)
-            //print(parsedResult!)
+            
             let accountInfo = parsedResult["account"] as! [String:AnyObject]
             let sessionInfo = parsedResult["session"] as! [String:AnyObject]
-            //print(accountInfo["key"]!)
             guard let userKey = accountInfo["key"]  as? String else {
                 sendError("user key is not found")
                 return
@@ -79,8 +70,6 @@ class API{
                 sendError("Session id is not found")
                 return
             }
-//            print(userKey)
-//            print(sessionID)
             self.appDelegate.userKey = userKey
             self.appDelegate.sessionID = sessionID
             completion(true,nil)
@@ -145,7 +134,6 @@ class API{
                 return
             }
             print(String(data: data, encoding: .utf8)!)
-//            var locations: [String:[StudentLocation]]
             var locationsDict: jsonResponse
             do{
                 locationsDict = try JSONDecoder().decode(jsonResponse.self, from: data)
@@ -190,7 +178,7 @@ class API{
                 sendError("No data was returned by the request!")
                 return
             }
-            //print(String(data: data, encoding: .utf8)!)
+            
             let range = Range(5..<data.count)
             let newData = data.subdata(in: range) /* subset response data! */
             let parsedResult: [String:AnyObject]!
@@ -208,13 +196,9 @@ class API{
     }
     func postNewLocation(newLocationDict:[String:Any], completion: @escaping (_ success:Bool?, _ error:String?)->Void){
         let url = URL(string: APIConstants.studentNewLocationURL)
-        //        print(userName)
-        //        print(password)
-        /* 1. Set the parameters */
         /* 2/3. Build the URL, Configure the request */
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
-//        request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
