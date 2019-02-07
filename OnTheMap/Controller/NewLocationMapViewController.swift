@@ -62,6 +62,7 @@ class NewLocationMapViewController: UIViewController, MKMapViewDelegate {
                 self.sharedAPI.postNewLocation(newLocationDict: self.newStudentLocation!, completion: { (success, error) in
                     if success!{
                         print("posted successfuly")
+                        self.dismiss(animated: true, completion: nil)
                     } else{
                         print(error!)
                         self.showAlert(message: "Faild to post new location")

@@ -18,34 +18,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.delegate = self
-        // loading locations
-        API.sharedAPI.getStudentLocations { (success, error) in
-            if success! {
-                performUIUpdatesOnMain {
-                // constructing annotations for locations
-                var annotations = [MKPointAnnotation]()
-                let locations = self.appDelegate.studentLocations
-                for location in locations {
-                    let lat = CLLocationDegrees(location.latitude ?? 0.0 )
-                    let long = CLLocationDegrees(location.longitude ?? 0.0 )
-                    let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                    let firstName = location.firstName ?? "NA"
-                    let lastName = location.lastName ?? "NA"
-                    let mediaURL = location.mediaURL ?? "NA"
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = coordinate
-                    annotation.title = "\(firstName) \(lastName)"
-                    annotation.subtitle = mediaURL
-                    annotations.append(annotation)
-                }
-                self.mapView.addAnnotations(annotations)
-            }
-            }
-            // loading locations failure
-            else{
-                    self.showAlert(message: "Failed to retrive student locations")
-            }
-        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.loadStudentLocations()
     }
     // annotations dicoration
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -71,6 +46,35 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
                 app.open(URL(string: toOpen)!)
+            }
+        }
+    }
+    func loadStudentLocations(){
+        API.sharedAPI.getStudentLocations { (success, error) in
+            if success! {
+                performUIUpdatesOnMain {
+                    // constructing annotations for locations
+                    var annotations = [MKPointAnnotation]()
+                    let locations = self.appDelegate.studentLocations
+                    for location in locations {
+                        let lat = CLLocationDegrees(location.latitude ?? 0.0 )
+                        let long = CLLocationDegrees(location.longitude ?? 0.0 )
+                        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                        let firstName = location.firstName ?? "NA"
+                        let lastName = location.lastName ?? "NA"
+                        let mediaURL = location.mediaURL ?? "NA"
+                        let annotation = MKPointAnnotation()
+                        annotation.coordinate = coordinate
+                        annotation.title = "\(firstName) \(lastName)"
+                        annotation.subtitle = mediaURL
+                        annotations.append(annotation)
+                    }
+                    self.mapView.addAnnotations(annotations)
+                }
+            }
+                // loading locations failure
+            else{
+                self.showAlert(message: "Failed to retrive student locations")
             }
         }
     }

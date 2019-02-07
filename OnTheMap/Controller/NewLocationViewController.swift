@@ -41,6 +41,9 @@ class NewLocationViewController: UIViewController, CLLocationManagerDelegate, UI
                     self.configureUI(enabled: false)
                     return
             }
+            if error != nil{
+               self.showAlert(message: "geocoding fails")
+            }
             // storing the new location data
             self.appDelegate.newStudentLocation["mapString"] = address
             self.appDelegate.newStudentLocation["latitude"] = location.coordinate.latitude
