@@ -51,7 +51,6 @@ class LocationsTableViewController: UITableViewController {
         let lastName = appDelegate.studentLocations[indexPath.row].lastName ?? "NA"
         let studentFullName = "\(firstName) \(lastName)"
         cell.textLabel?.text = studentFullName
-        cell.detailTextLabel?.text = appDelegate.studentLocations[indexPath.row].mediaURL ?? "NA"
         return cell
     }
     

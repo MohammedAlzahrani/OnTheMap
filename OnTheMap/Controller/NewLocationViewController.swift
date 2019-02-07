@@ -45,6 +45,7 @@ class NewLocationViewController: UIViewController, CLLocationManagerDelegate, UI
             self.appDelegate.newStudentLocation["mapString"] = address
             self.appDelegate.newStudentLocation["latitude"] = location.coordinate.latitude
             self.appDelegate.newStudentLocation["longitude"] = location.coordinate.longitude
+            self.appDelegate.newStudentLocation["mediaURL"] = self.urlTextField.text ?? ""
             self.configureUI(enabled: false)
             // showing the new location on map
             let storyboard = UIStoryboard (name: "Main", bundle: nil)

@@ -29,10 +29,27 @@ class NewLocationMapViewController: UIViewController, MKMapViewDelegate {
         // configuring annotation
         annotation.coordinate = coordinate
         annotation.title = self.appDelegate.newStudentLocation["mapString"] as? String
+        annotation.subtitle = self.appDelegate.newStudentLocation["mediaURL"] as? String
         self.mapView.addAnnotation(annotation)
         // zooming map to new location
         let region = MKCoordinateRegionMake(coordinate, MKCoordinateSpan(latitudeDelta: 0.1,longitudeDelta: 0.1))
         self.mapView.setRegion(region, animated: true)
+    }
+    // annotations dicoration
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.pinTintColor = .red
+            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        return pinView
     }
     // MARK:- Actions
     @IBAction func submitNewLocation(_ sender: Any) {
